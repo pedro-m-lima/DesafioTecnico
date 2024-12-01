@@ -13,3 +13,29 @@ Cypress.Commands.add('validaEstruturaJson', (res, estruturaJson)=>{
         expect(api).to.have.all.keys(estruturaJson); 
     });
 })
+
+Cypress.Commands.add('validaPropriedadesFeitico', (res, feiticoEsperado, feiticoValidar)=>{
+    const feitico = res.body.find(spell => spell.spell === feiticoEsperado); 
+    expect(feitico).to.exist; 
+
+    for (let chave in feiticoValidar){
+            expect(feitico).to.have.property(chave, feiticoValidar[chave]);
+        }
+})
+
+Cypress.Commands.add('validaPropriedadesCasas', (res, casaEsperada, propriedadesCasas)=>{
+    const casa = res.body.find(house => house.house === casaEsperada); 
+    expect(casa).to.exist; 
+    expect(casa).to.have.property('house', propriedadesCasas.house); 
+    expect(casa).to.have.property('emoji', propriedadesCasas.emoji); 
+    expect(casa).to.have.property('founder', propriedadesCasas.founder); 
+    expect(casa).to.have.property('colors').to.deep.eq(propriedadesCasas.colors); 
+    expect(casa).to.have.property('animal', propriedadesCasas.animal); 
+    expect(casa).to.have.property('index', propriedadesCasas.index);
+})
+
+Cypress.Commands.add('validaPropriedadesPersonagens', (res, propPersonagens)=>{
+    const personagem = res.body.find(character => character.fullName === propPersonagens.fullName); 
+    expect(personagem).to.exist; 
+    expect(personagem).to.have.property('interpretedBy', propPersonagens.interpretedBy);
+})
