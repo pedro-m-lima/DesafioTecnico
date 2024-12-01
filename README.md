@@ -1,12 +1,9 @@
 # Desafio Técnico
 [![GitHub](https://img.shields.io/badge/GitHub-pedro--m--lima-blue?style=for-the-badge&logo=github)](https://github.com/pedro-m-lima)
 
-## Desafio A - Testes E2E
-### A aplicação consiste em escrever testes E2E na página [Seu Barriga](https://seubarriga.wcaquino.me/login). Deverão ser desenvolvidos alguns cenários.
-
 ## Orientações para execução do projeto
 
-#### Pré Condições
+### Pré Condições
 - Possuir o Node.js e npm instalados, você pode baixa-los [neste link](https://nodejs.org/pt)
 - Para este projeto foi utilizada as versões
     - Node.js - **20.17.0**
@@ -44,6 +41,29 @@ npx cypress run
 ````sh
 npx cypress open
 ````
+### Estrutura do Projeto
+#### Diretórios e Arquivos
+- cypress/
+  - e2e/ 
+    - api_Desafio_B/                    
+      - desafioB.cy.js
+    - gui_Desafio_A/
+      - cadConta.cy.js
+      - cadMovimentacao.cy.js
+      - cadUsuario.cy.js
+      - login.cy.js
+  - fixtures/
+    - usuario.json
+  - support/
+    - api_commands.js
+    - e2e.js
+    - gui_commands.js
+
+> No caminho cypress/e2e/gui_Desafio_A, foram criados os teste de interface grafica do usuário e os commands criados para estes testes estão em cypress/support/gui_commands.js. No caminho cypress/e2e/api_Desafio_B esta o scrip que contem todos os testes  de API referente ao desafio B e os commands estão em cypress/support/api_commands.js
+
+
+## Desafio A - Testes E2E
+### A aplicação consiste em escrever testes E2E na página [Seu Barriga](https://seubarriga.wcaquino.me/login). Deverão ser desenvolvidos alguns cenários.
 
 ## Cenários Propostos:
 
@@ -76,7 +96,7 @@ QUANDO clicar em extrato
 ENTAO deve conter toda a movimentação cadastrada.
 ````
 
-## Novos Cenários Extras
+## Novos Cenários 
 ````JavaScript
 'Cenário Extra 1' - "caminho script (cypress\e2e\gui_Desafio_A\login.cy.js)"
 DADO que acesso a página de login
@@ -111,8 +131,9 @@ QUANDO clico no botão de salvar
 ENTAO deve ser exibida a mensagem de erro
 ````
 ## Desafio B - Teste de API:
-#### Aplicação consiste em escrever testes para alguns cenários conforme descrito abaixo,baseado nas APIs do Harry Potter, disponível em: https://potterapi-fedeperin.vercel.app/pt Deverão ser desenvolvidos os cenários para teste das seguintes operações:
+#### O desafio consiste em escrever testes para alguns cenários conforme descrito abaixo,baseado nas [APIs do Harry Potter](https://potterapi-fedeperin.vercel.app/pt),  Deverão ser desenvolvidos os cenários para teste das seguintes operações:
 
+#### Cenários Propostos:
  1. Validar o formato da request (json válido) para a seguinte API:
  https://potterapi-fedeperin.vercel.app/pt/houses
 
@@ -138,3 +159,7 @@ ENTAO deve ser exibida a mensagem de erro
  além de validar o retorno da API.
 
  9. Validar o json de retorno do personagem de index válido.
+
+#### cenário Extra
+
+10. Cenário Extras Api - Validar o nome dos filhos da "Hermione" e o retorno da API.

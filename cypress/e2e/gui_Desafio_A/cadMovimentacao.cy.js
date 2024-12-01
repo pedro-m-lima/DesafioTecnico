@@ -5,7 +5,7 @@ describe('Cadastro de Movimentação', () => {
         cy.realizaLogin()
     })
 
-    it('cenário 4 - Deve conter movimentação peviamente cadastrada ao validar extrato', () => {
+    it('cenário 4 - Deve conter movimentação previamente cadastrada ao validar extrato', () => {
         let dadosMov = {
             conta: {
                 nome: 'Conta Corrente'

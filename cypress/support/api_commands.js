@@ -14,8 +14,8 @@ Cypress.Commands.add('validaEstruturaJson', (res, estruturaJson)=>{
     });
 })
 
-Cypress.Commands.add('validaPropriedadesFeitico', (res, feiticoEsperado, feiticoValidar)=>{
-    const feitico = res.body.find(spell => spell.spell === feiticoEsperado); 
+Cypress.Commands.add('validaPropriedadesFeitico', (res, feiticoValidar)=>{
+    const feitico = res.body.find(spell => spell.spell === feiticoValidar.spell); 
     expect(feitico).to.exist; 
 
     for (let chave in feiticoValidar){
@@ -23,8 +23,8 @@ Cypress.Commands.add('validaPropriedadesFeitico', (res, feiticoEsperado, feitico
         }
 })
 
-Cypress.Commands.add('validaPropriedadesCasas', (res, casaEsperada, propriedadesCasas)=>{
-    const casa = res.body.find(house => house.house === casaEsperada); 
+Cypress.Commands.add('validaPropriedadesCasas', (res, propriedadesCasas)=>{
+    const casa = res.body.find(house => house.house === propriedadesCasas.house); 
     expect(casa).to.exist; 
     expect(casa).to.have.property('house', propriedadesCasas.house); 
     expect(casa).to.have.property('emoji', propriedadesCasas.emoji); 
@@ -37,5 +37,9 @@ Cypress.Commands.add('validaPropriedadesCasas', (res, casaEsperada, propriedades
 Cypress.Commands.add('validaPropriedadesPersonagens', (res, propPersonagens)=>{
     const personagem = res.body.find(character => character.fullName === propPersonagens.fullName); 
     expect(personagem).to.exist; 
-    expect(personagem).to.have.property('interpretedBy', propPersonagens.interpretedBy);
+    for (let chave in propPersonagens){
+        expect(personagem).to.have.property(chave, propPersonagens[chave]);
+    }
 })
+
+
