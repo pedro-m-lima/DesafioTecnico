@@ -11,6 +11,7 @@ module.exports = defineConfig({
     env:{
       hideCredentials: true,
       requestMode: true,
+      urlApi: 'https://potterapi-fedeperin.vercel.app/pt',
     }
   },
 });

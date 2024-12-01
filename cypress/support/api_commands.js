@@ -1,6 +1,5 @@
-Cypress.Commands.add('validaApiHouses', ()=>{
-    cy.request({
-        method: 'GET',
-        url: `https://potterapi-fedeperin.vercel.app/pt/houses`
+Cypress.Commands.add('validaJsonApi', (api)=>{
+    cy.request(Cypress.env('urlApi')+api).then(res => {
+        return res
     })
 })
