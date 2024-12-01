@@ -8,5 +8,9 @@ module.exports = defineConfig({
     baseUrl: 'https://seubarriga.wcaquino.me/',
     viewportHeight: 1080,
     viewportWidth: 1920,
+    env:{
+      hideCredentials: true,
+      requestMode: true,
+    }
   },
 });

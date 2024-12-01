@@ -1,11 +1,10 @@
 describe('Cadastro de Movimentação',()=> {
+    let nomeConta = "Conta Poupanca"
 
     beforeEach(()=>{
         cy.realizaLogin()
     })
-    it('Cenário Extra 3 - Realiza cadastro de conta', ()=>{
-        const nomeConta = "Conta Poupanca 4"
-        
+    it('Cenário Extra 3 - Realiza cadastro de conta', ()=>{     
         //DADO que acesso a página de cadastro de contas
         cy.visit('/addConta')
         
@@ -24,8 +23,8 @@ describe('Cadastro de Movimentação',()=> {
     })
 
     it('Cenário Extra 4 - Tenta realizar cadastro com conta ja cadastrada', ()=>{
-        const nomeConta = "Conta Popuanca 3"
         //Pré Cadastros
+        nomeConta = "Banco do Brasil"
         cy.cadastraConta(nomeConta)
         
         //DADO que acesso a página de cadastro de contas

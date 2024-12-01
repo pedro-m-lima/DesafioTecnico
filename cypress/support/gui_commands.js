@@ -13,17 +13,17 @@ Cypress.Commands.add('geraDadosUsuario', () => {
     cy.writeFile('cypress/fixtures/usuario.json', usuario);
 })
 
-Cypress.Commands.add('cadastraUsuario', (nome, email, senha) => {
+Cypress.Commands.add('cadastraUsuario', (usuario) => {
     cy.visit('/cadastro')
-            cy.get('#nome').type(nome)
-            cy.get('#email').type(email)
-            cy.get('#senha').type(senha)
+            cy.get('#nome').type(usuario.nomeUsuario)
+            cy.get('#email').type(usuario.emailUsuario)
+            cy.get('#senha').type(usuario.senhaUsuario)
             cy.contains('.btn', 'Cadastrar').click()
 })
 
-Cypress.Commands.add('dadosLogin', (email, senha) => {
-    cy.get('#email').type(email)
-    cy.get('#senha').type(senha)
+Cypress.Commands.add('dadosLogin', (usuario) => {
+    cy.get('#email').type(usuario.emailUsuario)
+    cy.get('#senha').type(usuario.senhaUsuario)
 })
 
 Cypress.Commands.add('validaAlerta', (tipoAlerta, mensagemAlerta) => {
@@ -35,9 +35,9 @@ Cypress.Commands.add('validaAlerta', (tipoAlerta, mensagemAlerta) => {
 Cypress.Commands.add('realizaLogin', () => {
     cy.geraDadosUsuario()
     cy.readFile('cypress/fixtures/usuario.json').then((usuario) => {
-        cy.cadastraUsuario(usuario.nomeUsuario, usuario.emailUsuario, usuario.senhaUsuario)
+        cy.cadastraUsuario(usuario)
         cy.visit('/')
-        cy.dadosLogin(usuario.emailUsuario, usuario.senhaUsuario)
+        cy.dadosLogin(usuario)
         cy.contains('.btn', 'Entrar').click()
     })
 })
@@ -54,7 +54,6 @@ Cypress.Commands.add('cadastraConta', (conta) => {
 })
 
 //Movimentação
-
 Cypress.Commands.add('PreencheDadosMovimentacao', (dadosMov) => {
     
     cy.get('#tipo')

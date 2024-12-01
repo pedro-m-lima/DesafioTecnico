@@ -4,16 +4,17 @@ describe('Login', () => {
     cy.geraDadosUsuario()
   })
 
-  it('Cenário 2 - Tentar realizar login com email correto e senha inváda', () => {
+  it('Cenário 2 - Tentar realizar login com email correto e senha inválida', () => {
     cy.readFile('cypress/fixtures/usuario.json').then((usuario) => {
       //Pré Cadastros
-      cy.cadastraUsuario(usuario.nomeUsuario, usuario.emailUsuario, usuario.senhaUsuario)
+      cy.cadastraUsuario(usuario)
       
       //DADO que acesso a página de Login
       cy.visit('/')
       
       //E digito o email recém cadastrado //E uma senha inválida
-      cy.dadosLogin(usuario.emailUsuario, usuario.senhaInvalida)
+      cy.get('#email').type(usuario.emailUsuario)
+      cy.get('#senha').type(usuario.senhaInvalida)
       
       //QUANDO clico no botão de Entrar
       cy.contains('.btn', 'Entrar').click()
@@ -26,13 +27,13 @@ describe('Login', () => {
   it('Cenário 3 - Validar mensagem de "bem vindo" ao Logar', () => {
     cy.readFile('cypress/fixtures/usuario.json').then((usuario) => {
       //Pré Cadastros
-      cy.cadastraUsuario(usuario.nomeUsuario, usuario.emailUsuario, usuario.senhaUsuario)
+      cy.cadastraUsuario(usuario)
       
       //DADO que acesso a página de Login
       cy.visit('/')
       
       //E digito o email recém cadastrado //E uma senha inválida
-      cy.dadosLogin(usuario.emailUsuario, usuario.senhaUsuario)
+      cy.dadosLogin(usuario)
       
       //QUANDO clico no botão de Entrar
       cy.contains('.btn', 'Entrar').click()
@@ -42,7 +43,7 @@ describe('Login', () => {
     })
   })
 
-  it('Cenário Extra 1 - Validar mensagem de "bem vindo" ao Logar', () => {
+  it('Cenário Extra 1 - Tentar logar sem informar email e senha', () => {
       //DADO que acesso a página de Login
       cy.visit('/')
       

@@ -5,7 +5,7 @@ describe('Cadastro de Movimentação', () => {
         cy.realizaLogin()
     })
 
-    it('cenário 4 - Ao validar extrato deve conter movimentação peviamente cadastrada', () => {
+    it('cenário 4 - Deve conter movimentação peviamente cadastrada ao validar extrato', () => {
         let dadosMov = {
             conta: {
                 nome: 'Conta Corrente'
@@ -39,7 +39,7 @@ describe('Cadastro de Movimentação', () => {
         cy.validaResumoMensal(dadosMov)
     })
 
-    it('cenário extra 5 - Ao validar extrato deve conter movimentação peviamente cadastrada', () => {
+    it('cenário extra 5 - Validar mensagens de dados obrigatórios ao tentar cadastrar movimentação sem dados obrigatórios', () => {
         //DADO que acesso a página de manutenção
         cy.visit('/movimentacao')
         
